@@ -4,15 +4,17 @@ I write this article because I haven’t found solution that looks like mine, so
 
 ## Table of Content
 
-- Implementation
-  - Implement the classes
-  - Use the state pattern in the react hook
-- The full code, so you can copy-paste
-- Extended state machine (Error state, Copy-Pastable HTML)
-  - Digram
-  - Code
-- What problems does it solve
-- Why this article makes sense
+- [React state design pattern](#react-state-design-pattern)
+  - [Table of Content](#table-of-content)
+  - [Implementation](#implementation)
+    - [Implement the classes](#implement-the-classes)
+    - [Use the state pattern in the react hook](#use-the-state-pattern-in-the-react-hook)
+  - [The full code, so you can copy-paste](#the-full-code-so-you-can-copy-paste)
+  - [Extended state machine (Error state, Copy-Pastable HTML)](#extended-state-machine-error-state-copy-pastable-html)
+    - [Diagram](#diagram)
+    - [Code](#code)
+  - [What problems does it solve](#what-problems-does-it-solve)
+  - [Why this article makes sense](#why-this-article-makes-sense)
 
 ## Implementation
 
@@ -55,15 +57,15 @@ class RoomState {
   }
 
   join(roomId) {
-    throw new Error('Abstract method join(roomId).');
+    throw new Error("Abstract method join(roomId).");
   }
 
   leave() {
-    throw new Error('Abstract method leave().');
+    throw new Error("Abstract method leave().");
   }
 
   getStatusMessage() {
-    throw new Error('Abstract method getStatusMessage().');
+    throw new Error("Abstract method getStatusMessage().");
   }
 }
 
@@ -198,15 +200,15 @@ class RoomState {
   }
 
   join(roomId) {
-    throw new Error('Abstract method join(roomId).');
+    throw new Error("Abstract method join(roomId).");
   }
 
   leave() {
-    throw new Error('Abstract method leave().');
+    throw new Error("Abstract method leave().");
   }
 
   getStatusMessage() {
-    throw new Error('Abstract method getStatusMessage().');
+    throw new Error("Abstract method getStatusMessage().");
   }
 }
 
@@ -340,15 +342,15 @@ We externd the state machine, because we want to transition to Error state if we
         }
 
         join(roomId) {
-          throw new Error('Abstract method join(roomId).');
+          throw new Error("Abstract method join(roomId).");
         }
 
         leave() {
-          throw new Error('Abstract method leave().');
+          throw new Error("Abstract method leave().");
         }
 
         getStatusMessage() {
-          throw new Error('Abstract method getStatusMessage().');
+          throw new Error("Abstract method getStatusMessage().");
         }
       }
 
@@ -405,8 +407,8 @@ We externd the state machine, because we want to transition to Error state if we
           this.roomClient.setState(
             new ErrorRoomState(
               this.roomClient,
-              new Error(`Can't leave, no room assigned`),
-            ),
+              new Error(`Can't leave, no room assigned`)
+            )
           );
         }
 
@@ -465,21 +467,21 @@ We externd the state machine, because we want to transition to Error state if we
         const roomClient = useRoomClient();
 
         return e(
-          'div',
+          "div",
           null,
-          e('h1', null, 'Change room state'),
-          e('p', null, `Status message: ${roomClient.getStatusMessage()}`),
+          e("h1", null, "Change room state"),
+          e("p", null, `Status message: ${roomClient.getStatusMessage()}`),
           e(
-            'div',
+            "div",
             null,
-            e('button', { onClick: () => roomClient.join('a') }, 'Join'),
-            e('button', { onClick: () => roomClient.leave() }, 'Leave'),
-          ),
+            e("button", { onClick: () => roomClient.join("a") }, "Join"),
+            e("button", { onClick: () => roomClient.leave() }, "Leave")
+          )
         );
       }
 
       const { createRoot } = ReactDOM;
-      const root = document.getElementById('root');
+      const root = document.getElementById("root");
       createRoot(root).render(React.createElement(App));
     </script>
   </body>
